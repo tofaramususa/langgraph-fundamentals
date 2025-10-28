@@ -1,109 +1,191 @@
-![LangChain Academy](https://cdn.prod.website-files.com/65b8cd72835ceeacd4449a53/66e9eba1020525eea7873f96_LCA-big-green%20(2).svg)
+# LangGraph Fundamentals
 
-## Introduction
+A comprehensive course on LangGraph fundamentals, covering core concepts from basic graph construction to advanced patterns like memory management, parallelization, and deployment.
 
-Welcome to LangChain Academy! 
-This is a growing set of modules focused on foundational concepts within the LangChain ecosystem. 
-Module 0 is basic setup and Modules 1 - 4 focus on LangGraph, progressively adding more advanced themes. 
-In each module folder, you'll see a set of notebooks. A LangChain Academy accompanies each notebook 
-to guide you through the topic. Each module also has a `studio` subdirectory, with a set of relevant 
-graphs that we will explore using the LangGraph API and Studio.
+## Overview
+
+This repository contains progressive learning modules (0-6) focused on foundational concepts within the LangGraph ecosystem. Each module includes Jupyter notebooks for hands-on learning and a `studio/` subdirectory with deployable graph implementations for use with LangGraph Studio.
+
+## Module Structure
+
+### Module 0: Python Basics
+- `basics.ipynb` - Python fundamentals and setup
+
+### Module 1: LangGraph Foundations
+- `simple-graph.ipynb` - Building basic graphs with nodes, edges, and state
+- `chain.ipynb` - Creating sequential chains
+- `router.ipynb` - Implementing conditional routing logic
+- `agent.ipynb` - Building agents with tool calling
+- `agent-memory.ipynb` - Adding memory to agents
+- `deployment.ipynb` - Deployment basics
+
+**Studio Graphs:** `simple_graph`, `router`, `agent`
+
+### Module 2: State Management
+- `state-schema.ipynb` - Defining and using state schemas
+- `state-reducers.ipynb` - Custom state reduction logic
+- `multiple-schemas.ipynb` - Working with multiple state types
+- `chatbot-summarization.ipynb` - Building chatbots with conversation summarization
+- `chatbot-external-memory.ipynb` - External memory integration
+- `trim-filter-messages.ipynb` - Message management strategies
+
+**Studio Graphs:** `chatbot`
+
+### Module 3: Debugging & Human-in-the-Loop
+- `breakpoints.ipynb` - Setting and using breakpoints
+- `dynamic-breakpoints.ipynb` - Conditional breakpoint logic
+- `edit-state-human-feedback.ipynb` - Incorporating human feedback
+- `streaming-interruption.ipynb` - Handling interruptions during streaming
+- `time-travel.ipynb` - State replay and debugging
+
+**Studio Graphs:** `agent`, `dynamic_breakpoints`
+
+### Module 4: Advanced Patterns
+- `parallelization.ipynb` - Concurrent node execution
+- `sub-graph.ipynb` - Composing graphs with sub-graphs
+- `map-reduce.ipynb` - Map-reduce patterns for batch processing
+- `research-assistant.ipynb` - Building a research assistant with web search (Tavily)
+
+**Studio Graphs:** `parallelization`, `sub_graphs`, `map_reduce`, `research_assistant`
+
+### Module 5: Memory & Persistence
+- `memory_store.ipynb` - Core memory store concepts
+- `memory_agent.ipynb` - Agents with persistent memory
+- `memoryschema_profile.ipynb` - User profile memory schemas
+- `memoryschema_collection.ipynb` - Collection-based memory organization
+
+**Studio Graphs:** `chatbot_memory`, `chatbot_memory_profile`, `chatbot_memory_collection`, `memory_agent`
+
+### Module 6: Deployment
+- `creating.ipynb` - Creating deployments
+- `connecting.ipynb` - Connecting to deployed graphs
+- `assistant.ipynb` - Building production assistants
+- `double-texting.ipynb` - Handling concurrent requests
+
+**Deployment Examples:** `configuration.py`, `task_maistro.py`, `docker-compose-example.yml`
 
 ## Setup
 
-### Python version
+### Prerequisites
 
-To get the most out of this course, please ensure you're using Python 3.11 or later. 
-This version is required for optimal compatibility with LangGraph. If you're on an older version, 
-upgrading will ensure everything runs smoothly.
-```
+Python 3.10 or later is required (Python 3.11+ recommended for best compatibility):
+```bash
 python3 --version
 ```
 
-### Clone repo
-```
-git clone https://github.com/langchain-ai/langchain-academy.git
-$ cd langchain-academy
+### Installation
+
+1. Clone this repository:
+```bash
+git clone <your-repo-url>
+cd langgraph-fundamentals
 ```
 
-### Create an environment and install dependencies
-#### Mac/Linux/WSL
-```
-$ python3 -m venv lc-academy-env
-$ source lc-academy-env/bin/activate
-$ pip install -r requirements.txt
-```
-#### Windows Powershell
-```
-PS> python3 -m venv lc-academy-env
-PS> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
-PS> lc-academy-env\scripts\activate
-PS> pip install -r requirements.txt
+2. Create a virtual environment and install dependencies:
+
+**Mac/Linux/WSL:**
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-### Running notebooks
-If you don't have Jupyter set up, follow installation instructions [here](https://jupyter.org/install).
-```
-$ jupyter notebook
-```
-
-### Setting up env variables
-Briefly going over how to set up environment variables. You can also 
-use a `.env` file with `python-dotenv` library.
-#### Mac/Linux/WSL
-```
-$ export API_ENV_VAR="your-api-key-here"
-```
-#### Windows Powershell
-```
-PS> $env:API_ENV_VAR = "your-api-key-here"
+**Windows PowerShell:**
+```bash
+python3 -m venv .venv
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
+.venv\Scripts\activate
+pip install -r requirements.txt
 ```
 
-### Set OpenAI API key
-* If you don't have an OpenAI API key, you can sign up [here](https://openai.com/index/openai-api/).
-*  Set `OPENAI_API_KEY` in your environment 
+### Environment Variables
 
-### Sign up and Set LangSmith API
-* Sign up for LangSmith [here](https://smith.langchain.com/), find out more about LangSmith
-* and how to use it within your workflow [here](https://www.langchain.com/langsmith), and relevant library [docs](https://docs.smith.langchain.com/)!
-*  Set `LANGCHAIN_API_KEY`, `LANGCHAIN_TRACING_V2=true` in your environment 
+Set the following environment variables (or create a `.env` file):
 
-### Set up Tavily API for web search
-
-* Tavily Search API is a search engine optimized for LLMs and RAG, aimed at efficient, 
-quick, and persistent search results. 
-* You can sign up for an API key [here](https://tavily.com/). 
-It's easy to sign up and offers a very generous free tier. Some lessons (in Module 4) will use Tavily. 
-
-* Set `TAVILY_API_KEY` in your environment.
-
-### Set up LangGraph Studio
-
-* LangGraph Studio is a custom IDE for viewing and testing agents.
-* Studio can be run locally and opened in your browser on Mac, Windows, and Linux.
-* See documentation [here](https://langchain-ai.github.io/langgraph/concepts/langgraph_studio/#local-development-server) on the local Studio development server and [here](https://langchain-ai.github.io/langgraph/how-tos/local-studio/#run-the-development-server). 
-* Graphs for LangGraph Studio are in the `module-x/studio/` folders.
-* To start the local development server, run the following command in your terminal in the `/studio` directory each module:
-
+**Required for all modules:**
+```bash
+export OPENAI_API_KEY="your-openai-api-key"
 ```
+
+**Optional but recommended:**
+```bash
+export LANGCHAIN_API_KEY="your-langsmith-api-key"
+export LANGCHAIN_TRACING_V2=true
+```
+
+**Required for Module 4 (research assistant):**
+```bash
+export TAVILY_API_KEY="your-tavily-api-key"
+```
+
+**Get API Keys:**
+- OpenAI: [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+- LangSmith: [https://smith.langchain.com/](https://smith.langchain.com/)
+- Tavily: [https://tavily.com/](https://tavily.com/)
+
+### Running Notebooks
+
+Start Jupyter Notebook:
+```bash
+jupyter notebook
+```
+
+Navigate to any module directory and open the notebooks to begin learning.
+
+## LangGraph Studio
+
+LangGraph Studio is an IDE for visualizing, debugging, and testing LangGraph applications.
+
+### Starting Studio
+
+Navigate to any module's studio directory and start the development server:
+
+```bash
+cd module-1/studio
 langgraph dev
 ```
 
-You should see the following output:
-```
-- 🚀 API: http://127.0.0.1:2024
-- 🎨 Studio UI: https://smith.langchain.com/studio/?baseUrl=http://127.0.0.1:2024
-- 📚 API Docs: http://127.0.0.1:2024/docs
-```
+This will start:
+- **API Server:** http://127.0.0.1:2024
+- **Studio UI:** https://smith.langchain.com/studio/?baseUrl=http://127.0.0.1:2024
+- **API Docs:** http://127.0.0.1:2024/docs
 
-Open your browser and navigate to the Studio UI: `https://smith.langchain.com/studio/?baseUrl=http://127.0.0.1:2024`.
+### Studio Environment Setup
 
-* To use Studio, you will need to create a .env file with the relevant API keys
-* Run this from the command line to create these files for module 1 to 6, as an example:
-```
-for i in {1..6}; do
+Each studio directory needs a `.env` file with your API keys. You can set them up all at once:
+
+```bash
+# From the repository root
+for i in {1..5}; do
   cp module-$i/studio/.env.example module-$i/studio/.env
   echo "OPENAI_API_KEY=\"$OPENAI_API_KEY\"" > module-$i/studio/.env
 done
+
+# Add Tavily API key for module 4
 echo "TAVILY_API_KEY=\"$TAVILY_API_KEY\"" >> module-4/studio/.env
 ```
+
+## Project Structure
+
+```
+langgraph-fundamentals/
+├── module-0/          # Python basics
+├── module-1/          # LangGraph foundations
+│   ├── *.ipynb        # Jupyter notebooks
+│   └── studio/        # Deployable graphs
+├── module-2/          # State management
+├── module-3/          # Debugging & HITL
+├── module-4/          # Advanced patterns
+├── module-5/          # Memory & persistence
+├── module-6/          # Deployment
+├── requirements.txt   # Python dependencies
+├── pyproject.toml     # Project metadata
+└── CLAUDE.md          # Claude Code guidance
+```
+
+## Resources
+
+- **LangGraph Documentation:** [https://langchain-ai.github.io/langgraph/](https://langchain-ai.github.io/langgraph/)
+- **LangGraph Studio Docs:** [https://langchain-ai.github.io/langgraph/concepts/langgraph_studio/](https://langchain-ai.github.io/langgraph/concepts/langgraph_studio/)
+- **LangSmith:** [https://smith.langchain.com/](https://smith.langchain.com/)
+- **LangChain:** [https://python.langchain.com/](https://python.langchain.com/)
